@@ -1,16 +1,31 @@
-try:
-    f1 = open('Data.txt', 'r')
+def openFile():
+    try:
+        f1 = open('Data.txt', 'r')
+        while True:
+            data = f1.readlines()
+            print(data)
+            if data[0] != '':
+                return data
+            elif data[0] != '':
+                break
+        f1.close()
+    except IOError:
+        print(IOError.with_traceback())
+
+def dateMonth():
+    data2 = openFile()
+    size = len(data2)
     data1 = ['31', '12', '1900']
-    while True:
-        data = f1.readline().split("-")
-        print(data)
-        if data[0] == '':
-            break
-        if int(data[0]) < int(data1[0]):
-            data1[0] = data[0]
-        if int(data[0]) < int(data1[1]):
-            data1[1] = data[1]
-    f1.close()
+    for i in range(0, size, 1):
+        n = data2[i].split('-')[0]
+        print(n)
+        if int(n) < int(data1[0]):
+            data1[0] = n
+        n = data2[1].split('-')[1]
+        if int(n) < int(data1[1]):
+            data1[1] = n
     print(data1[0], " - ", data1[1])
-except IOError:
-    print(IOError.with_traceback())
+
+
+
+dateMonth()
